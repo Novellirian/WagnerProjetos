@@ -1,0 +1,53 @@
+
+Relatório - Sistema de Pedidos para Lanchonete
+
+Padrões de Projeto Aplicados
+
+1. Decorator:
+   - Objetivo: Permitir que os clientes personalizem o hambúrguer base com ingredientes adicionais de forma dinâmica.
+   - Aplicação: O padrão Decorator foi implementado através da interface IHamburguer, que define os métodos GetDescricao e GetPreco. 
+     A classe HamburguerSimples implementa o hambúrguer básico, e as classes como Queijo, Bacon, Ovo, Alface e Tomate 
+     funcionam como decoradores concretos, herdando de IngredienteDecorador. Cada ingrediente adicional "envolve" o hambúrguer 
+     base, adicionando descrição e preço de forma dinâmica.
+   - Benefícios: A flexibilidade do padrão permite adicionar quantos ingredientes forem necessários sem alterar as classes 
+     existentes, promovendo a extensão do sistema de forma transparente.
+
+2. Observer:
+   - Objetivo: Notificar automaticamente as equipes de produção e montagem sobre alterações no pedido, como mudanças de status.
+   - Aplicação: A classe Pedido funciona como o Sujeito (Subject) no padrão Observer, mantendo uma lista de observadores 
+     (MonitorProducao e MonitorMontagem). Quando o status do pedido muda (ex.: "Em Produção", "Pronto para Entrega"), 
+     o método Notificar é chamado, informando todos os observadores sobre a alteração do pedido.
+   - Benefícios: O padrão Observer facilita a comunicação entre o sistema de pedidos e as equipes, garantindo que qualquer 
+     mudança no pedido seja refletida automaticamente nos monitores, sem necessidade de interação direta.
+
+
+Estrutura do Código
+
+1. Pacote Decorators: Contém as classes relacionadas ao hambúrguer e seus ingredientes, implementando o padrão Decorator:
+   - IHamburguer: Interface base.
+   - HamburguerSimples: Implementa o hambúrguer básico.
+   - IngredienteDecorador: Classe abstrata para os decoradores.
+   - Decoradores concretos (Queijo, Bacon, Ovo, Alface, Tomate).
+
+2. Pacote Observers: Contém as classes relacionadas ao padrão Observer:
+   - IObserver: Interface que define o método Atualizar.
+   - Pedido: Classe que atua como o Sujeito, mantendo os observadores e notificando-os.
+   - MonitorProducao e MonitorMontagem: Observadores concretos que reagem às mudanças no pedido.
+
+3. Programa Principal:
+   - A classe Program coordena a criação do hambúrguer personalizado, a inscrição dos observadores, a finalização do pedido, 
+     e a exibição das atualizações em tempo real.
+
+
+Possíveis Melhorias
+
+1. Itens Adicionais: Expandir o sistema para incluir outros itens no pedido (ex.: batata frita, refrigerante) pode ser feito criando 
+   uma estrutura semelhante ao hambúrguer e usando o padrão Decorator para combos.
+2. Notificações ao Cliente: Adicionar um novo observador para notificar os clientes sobre o andamento do pedido via e-mail ou aplicativo.
+
+
+Conclusão
+Os padrões Decorator e Observer foram aplicados com sucesso para permitir a personalização de pedidos e a notificação automática 
+das equipes. A estrutura modular do código garante flexibilidade, permitindo a adição de novos ingredientes, observadores ou 
+funcionalidades sem a necessidade de grandes mudanças. As melhorias sugeridas podem aumentar ainda mais a robustez e a 
+funcionalidade do sistema.

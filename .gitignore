@@ -1,0 +1,8 @@
+# Ignore diretórios de build
+bin/
+obj/
+.vs/
+
+# Outros arquivos desnecessários
+*.user
+*.suo
